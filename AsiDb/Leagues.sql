@@ -1,8 +1,11 @@
-DECLARE @isLiveFlag		 INT = 0;	DECLARE @isLive INT = 1;	
-DECLARE @countryNameFlag INT = 1;	DECLARE @countryName VARCHAR(100) = 'USA';
+DECLARE @isLiveFlag		    INT = 0;	DECLARE @isLive INT = 1;	
+DECLARE @countryNameFlag    INT = 1;	DECLARE @countryName VARCHAR(100) = 'USA';
+DECLARE @sportNameFlag      INT = 0;	DECLARE @sportName Varchar(100) = 'Soccer'; /*  SELECT TOP(1000) * FROM [asidb].[dbo].[tbSport]  */
 
 SELECT TOP (1000) 
-       st.[SportType]
+      st.[LeagueId]
+      ,st.[SportType]
+      ,CONCAT('(', st.[SportID], ', ', s.[Name], ')') AS Sport
       ,st.[SportSubType]
       ,st.[ImportSport]
       ,st.[DrawFlag]
@@ -10,8 +13,6 @@ SELECT TOP (1000)
       ,st.[IsLive]
       ,st.[HomeTeam]
       ,st.[ShowRotNum]
-      ,st.[SportID]
-      ,st.[MasterLeagueID]
       ,st.[PrimaryLeagueOrdering]
       ,st.[Active]
       ,st.[ShowScore]
@@ -26,7 +27,8 @@ SELECT TOP (1000)
       ,st.[FeaturedLeague]
       ,CONCAT('(', st.[CountryId], ', ', cr.[Name], ')') AS Country
       ,st.[GenderGroupID]
-      ,st.[ParentLeagueID]
+      ,CASE WHEN st.[MasterLeagueID] IS NULL THEN NULL ELSE CONCAT('(', st.[MasterLeagueID], ', ', ml.[SportType], ')') END AS MasterLeague
+      ,CASE WHEN st.[ParentLeagueID] IS NULL THEN NULL ELSE CONCAT('(', st.[ParentLeagueID], ', ', pl.[SportType], ')') END AS ParentLeague
       ,st.[LastUpdated]
       ,st.[ParlayRestrictionDefault]
       ,st.[SportsbookDepartmentId]
@@ -35,12 +37,15 @@ SELECT TOP (1000)
       ,st.[ParticipantAgeGroupId]
       ,st.[LiveCoverage]
       ,st.[LiveCoverageType]
-      ,st.[LeagueId]
   FROM [asidb].[dbo].[tbSportType] st
-	INNER JOIN [dbo].[tbFBSCountriesAndRegions] cr ON st.CountryId = cr.CountryId
+    INNER JOIN [asidb].[dbo].[tbSport] s            ON st.SportId = s.SportID
+	  INNER JOIN [dbo].[tbFBSCountriesAndRegions] cr  ON st.CountryId = cr.CountryId
+      LEFT JOIN [asidb].[dbo].[tbSportType] ml ON st.MasterLeagueID = ml.LeagueId
+      LEFT JOIN [asidb].[dbo].[tbSportType] pl ON st.ParentLeagueID = pl.LeagueId
   WHERE 1=1
 		--AND st.LeagueId = 11699
 		--AND st.SportType LIKE 'Soccer%'					--	'Football'
 		--AND st.SportSubType LIKE '%Eng%Premier%'			--	'NFL%'
-		AND (@IsLiveFlag = 0		OR (@isLiveFlag = 1 AND st.IsLive = @isLive))
-		AND (@countryNameFlag = 0	OR (@countryNameFlag = 1 AND cr.[Name] LIKE @countryName))
+        AND (@sportNameFlag = 0     OR (@sportNameFlag = 1      AND s.[Name] LIKE @sportName))
+		AND (@isLiveFlag = 0		OR (@isLiveFlag = 1         AND st.IsLive = @isLive))
+		AND (@countryNameFlag = 0	OR (@countryNameFlag = 1    AND cr.[Name] LIKE @countryName))
