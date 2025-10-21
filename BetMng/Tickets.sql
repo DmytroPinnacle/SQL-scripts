@@ -25,6 +25,7 @@ SELECT TOP (1000)
 		INNER JOIN [q-sqldb-betmng].[dbo].[Channel] c ON t.Channel = c.ID
   WHERE 1=1
 		--AND t.TicketId = 2151917761
-		AND b.BetId = 89748
+		--AND b.BetId = 89748
+        AND b.PartnerBetId LIKE '2152749137%'
 		--AND (@useChannel = 0 OR (@useChannel = 1 AND c.Channel LIKE @channel)) 
 

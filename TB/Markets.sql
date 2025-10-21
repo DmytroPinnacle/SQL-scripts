@@ -1,4 +1,4 @@
-DECLARE @marketStatusFlag INT = 0; DECLARE @marketStatus Varchar(50) = 'Opened'; /* SELECT * FROM [TradingBackendDb].[dbo].[MarketStatus] ms */
+DECLARE @marketStatusFlag INT = 0; DECLARE @marketStatus Varchar(50) = 'Opened'; /* SELECT * FROM [q-sqldb-tradingbackend].[dbo].[MarketStatus] ms */
 
 
 SELECT TOP (1000) 
@@ -33,9 +33,9 @@ SELECT TOP (1000)
       ,m.[ParticipantMatchupGroupId]
       ,m.[AllowDuplicates]
       ,m.[MaxBetAmount]
-  FROM [TradingBackendDb].[dbo].[Markets] m
-			INNER JOIN [TradingBackendDb].[dbo].[Fixtures] f ON f.FixtureId = m.FixtureId
-			INNER JOIN [TradingBackendDb].[dbo].[MarketStatus] ms ON m.MarketStatusId = ms.MarketStatusId
+  FROM [q-sqldb-tradingbackend].[dbo].[Markets] m
+			INNER JOIN [q-sqldb-tradingbackend].[dbo].[Fixtures] f ON f.FixtureId = m.FixtureId
+			INNER JOIN [q-sqldb-tradingbackend].[dbo].[MarketStatus] ms ON m.MarketStatusId = ms.MarketStatusId
   WHERE 1=1
 		--AND m.MarketId = 47722874
 		--AND m.IsMain = 1

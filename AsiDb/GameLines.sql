@@ -55,5 +55,5 @@ SELECT TOP (1000)
   INNER JOIN [asidb].[dbo].[tbNewGame] g ON gl.GameNum = g.GameNum
 	WHERE 1=1
 			--AND gl.LineIndex = 2311626827
-			AND g.GameNum = 1037257947 --1037257948
+			AND g.GameNum = 1037853559 --1037257948
 

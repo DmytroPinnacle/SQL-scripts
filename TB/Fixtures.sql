@@ -22,8 +22,8 @@ SELECT TOP (1000)
       ,f.[IsArchived]
       ,f.[CommittedAt]
       ,f.[SportStageId]
-  FROM [TradingBackendDb].[dbo].[Fixtures] f
-		INNER JOIN [TradingBackendDb].[dbo].[OfferedLives] ol ON f.OfferedLiveId = ol.OfferedLiveId
+  FROM [q-sqldb-tradingbackend].[dbo].[Fixtures] f
+		INNER JOIN [q-sqldb-tradingbackend].[dbo].[OfferedLives] ol ON f.OfferedLiveId = ol.OfferedLiveId
   WHERE 1=1
 		AND f.FixtureId = 1036444147
 		AND (@offeredLiveFlag = 0 OR (@offeredLiveFlag = 1 AND ol.[Name] LIKE @offeredLive))

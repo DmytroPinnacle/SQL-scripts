@@ -26,10 +26,10 @@ SELECT TOP (1000)
       ,s.[ModelAdjustment]
       ,s.[MarketAdjustment]
       ,s.[MaxToWin]
-  FROM [TradingBackendDb].[dbo].[Selections] s
-		INNER JOIN [TradingBackendDb].[dbo].[Markets] m ON m.MarketId = s.MarketId
-		INNER JOIN [TradingBackendDb].[dbo].[Fixtures] f ON f.FixtureId = m.FixtureId
-		INNER JOIN [TradingBackendDb].[dbo].[SelectionTypes] st ON s.SelectionTypeId = st.Id 
+  FROM [q-sqldb-tradingbackend].[dbo].[Selections] s
+		INNER JOIN [q-sqldb-tradingbackend].[dbo].[Markets] m ON m.MarketId = s.MarketId
+		INNER JOIN [q-sqldb-tradingbackend].[dbo].[Fixtures] f ON f.FixtureId = m.FixtureId
+		INNER JOIN [q-sqldb-tradingbackend].[dbo].[SelectionTypes] st ON s.SelectionTypeId = st.Id 
   WHERE 1=1
 		--AND s.SelectionId = 103292980
 		--AND m.MarketId = 48916809

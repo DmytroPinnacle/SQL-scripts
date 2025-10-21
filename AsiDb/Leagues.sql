@@ -1,6 +1,7 @@
 DECLARE @isLiveFlag		    INT = 0;	DECLARE @isLive INT = 1;	
 DECLARE @countryNameFlag    INT = 1;	DECLARE @countryName VARCHAR(100) = 'USA';
-DECLARE @sportNameFlag      INT = 0;	DECLARE @sportName Varchar(100) = 'Soccer'; /*  SELECT TOP(1000) * FROM [asidb].[dbo].[tbSport]  */
+DECLARE @sportNameFlag      INT = 1;	DECLARE @sportName Varchar(100) = 'Football'; /*  SELECT TOP(1000) * FROM [asidb].[dbo].[tbSport]  */
+DECLARE @sportSubTypeFlag   INT = 1;	DECLARE @sportSubType VARCHAR(100) = 'NFL%';
 
 SELECT TOP (1000) 
       st.[LeagueId]
@@ -47,5 +48,6 @@ SELECT TOP (1000)
 		--AND st.SportType LIKE 'Soccer%'					--	'Football'
 		--AND st.SportSubType LIKE '%Eng%Premier%'			--	'NFL%'
         AND (@sportNameFlag = 0     OR (@sportNameFlag = 1      AND s.[Name] LIKE @sportName))
+		AND (@sportSubTypeFlag = 0  OR (@sportSubTypeFlag = 1   AND st.[SportSubType] LIKE @sportSubType))
 		AND (@isLiveFlag = 0		OR (@isLiveFlag = 1         AND st.IsLive = @isLive))
 		AND (@countryNameFlag = 0	OR (@countryNameFlag = 1    AND cr.[Name] LIKE @countryName))

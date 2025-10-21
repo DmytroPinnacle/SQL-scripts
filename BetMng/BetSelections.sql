@@ -20,4 +20,5 @@ SELECT TOP (1000)
   INNER JOIN [q-sqldb-betmng].[dbo].[Bet] b ON b.BetId = bs.BetId
 
   WHERE 1=1
-		AND b.PartnerBetId LIKE '2152233474%'
+		AND b.BetId = 524249
+		--AND b.PartnerBetId LIKE '2152233474%'
