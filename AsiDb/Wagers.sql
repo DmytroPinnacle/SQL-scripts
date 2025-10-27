@@ -36,7 +36,10 @@ SELECT TOP (1000)
 	  ,t.*
 	FROM [asidb].[dbo].[tbWager] w
 		INNER JOIN [asidb].[dbo].[tbTicket] t ON t.[TicketNumber] = w.[TicketNumber]
+        INNER JOIN [asidb].[dbo].[tbWagerGameItem] wgi ON wgi.[TicketNumber] = w.TicketNumber AND wgi.WagerNumber = w.WagerNumber
+        INNER JOIN [asidb].[dbo].[tbGame] g ON wgi.GameNum = g.GameNum
 	WHERE 1=1
 			--AND w.[WagerNumber] = 23423423423
-			AND t.[TicketNumber] = 2152233474
+			AND t.[TicketNumber] = 2152833341
+            AND g.GameNum = 1039583555
 		

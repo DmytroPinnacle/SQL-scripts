@@ -45,7 +45,7 @@ SELECT TOP (1000) [GameIndex]
       ,[LiveCoverage]
   FROM [asidb].[dbo].[tbNewGame] g
 	WHERE 1=1
-		AND g.GameNum = 1037257948 --1037257947
+		AND g.GameNum = 1039583555 --1037257947
 
 
 /*

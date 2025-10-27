@@ -6,7 +6,7 @@ SELECT TOP (1000)
       ,wgi.[GameDateTime]
       ,wgi.[SportType]
       ,wgi.[SportSubType]
-      ,wgi.[WagerType]
+      ,wgi.[WagerType] --,CONCAT('(', wgi.[WagerType], ', ', wt.WagerType, ')') AS WagerType      
       ,wgi.[AdjSpread]
       ,wgi.[AdjTotalPoints]
       ,wgi.[TotalPointsOU]
@@ -38,9 +38,15 @@ SELECT TOP (1000)
       ,wgi.[ValueDate]
       ,wgi.[ArchiveFlag]
       ,wgi.[LayoffFlag]
+      ,'----------[Ticket]-------------' as "-------------[Ticket]-------------"
+	  ,t.*
+      ,'----------[Wager]-------------' as "-------------[Wager]-------------"
+      ,w.*
   FROM [asidb].[dbo].[tbWagerGameItem] wgi
 	INNER JOIN [asidb].[dbo].[tbTicket] t ON t.[TicketNumber] = wgi.[TicketNumber]
-	INNER JOIN [asidb].[dbo].[tbNewGame] g ON wgi.GameNum = g.GameNum
+    INNER JOIN [asidb].[dbo].[tbWager] w ON wgi.[TicketNumber] = w.TicketNumber AND wgi.WagerNumber = w.WagerNumber
+	INNER JOIN [asidb].[dbo].[tbGame] g ON wgi.GameNum = g.GameNum
+    --LEFT JOIN [asidb].[dbo].[tbWagerTypes] wt ON wt.WagerType = wgi.WagerType --Not mapping directly. Mapped somewhere in BL
    WHERE 1=1
-	--AND t.[TicketNumber] = 2152182758
-	AND g.GameNum = 1037257948 --1037257947
+	AND t.[TicketNumber] = 2152833341
+	--AND g.GameNum = 1037257948 --1037257947

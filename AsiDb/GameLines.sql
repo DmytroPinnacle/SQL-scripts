@@ -52,8 +52,9 @@ SELECT TOP (1000)
       ,gl.[Team1IDRedCards]
       ,gl.[Team2IDRedCards]
   FROM [asidb].[dbo].[tbNewGameLine] gl
-  INNER JOIN [asidb].[dbo].[tbNewGame] g ON gl.GameNum = g.GameNum
-	WHERE 1=1
-			--AND gl.LineIndex = 2311626827
-			AND g.GameNum = 1037853559 --1037257948
+    INNER JOIN [asidb].[dbo].[tbNewGame] g ON gl.GameNum = g.GameNum
+    WHERE 1=1
+			AND gl.LineIndex = 2319112591
+			AND g.GameNum = 1039583555 --1037257948
+            AND gl.PeriodNumber = 0
 

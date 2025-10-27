@@ -1,0 +1,27 @@
+SELECT TOP (1000) 
+       [GameNum]
+      ,[PeriodNumber]
+      ,[PeriodDescription]
+      ,[Team1Score]
+      ,[Team2Score]
+      ,[WinnerID]
+      ,[GradeSpreadNum]
+      ,[GradeMoneyLineNum]
+      ,[GradeTtlPtsNum]
+      ,[GameCancelled]
+      ,[StartingPitcher1]
+      ,[StartingPitcher2]
+      ,[CancelSpreadFlag]
+      ,[CancelMoneyLineFlag]
+      ,[CancelTtlPtsFlag]
+      ,[EopTeam1Score]
+      ,[EopTeam2Score]
+      ,[DailyFigureDate]
+      ,[Team1TennisSets]
+      ,[Team2TennisSets]
+      ,[TennisSetsWinnerId]
+      ,[PendingInvestigation]
+      ,[LastUpdated]
+  FROM [asidb].[dbo].[tbGameOutcome] "go"
+  WHERE 1=1
+    AND "go".GameNum = 1039583555

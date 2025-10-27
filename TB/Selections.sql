@@ -2,8 +2,8 @@ DECLARE @selectionTypeFlag INT = 0; DECLARE @selectionType Varchar(50) = 'LastPa
 
 SELECT TOP (1000) 
 	   s.[SelectionId]
-      ,s.[SelectionTypeId]
-      ,s.[SelectionStatusId]
+      ,CONCAT('(', s.[SelectionTypeId], ', ', st.[Name], ')') AS SelectionType
+      ,CONCAT('(', s.[SelectionStatusId], ', ', ss.[Name], ')') AS SelectionStatus
       ,s.[ParticipantId]
       ,s.[SubParticipantId]
       ,s.[Points]
@@ -29,9 +29,10 @@ SELECT TOP (1000)
   FROM [q-sqldb-tradingbackend].[dbo].[Selections] s
 		INNER JOIN [q-sqldb-tradingbackend].[dbo].[Markets] m ON m.MarketId = s.MarketId
 		INNER JOIN [q-sqldb-tradingbackend].[dbo].[Fixtures] f ON f.FixtureId = m.FixtureId
-		INNER JOIN [q-sqldb-tradingbackend].[dbo].[SelectionTypes] st ON s.SelectionTypeId = st.Id 
+		INNER JOIN [q-sqldb-tradingbackend].[dbo].[SelectionTypes] st ON s.SelectionTypeId = st.Id
+        INNER JOIN [q-sqldb-tradingbackend].[dbo].SelectionStatus ss ON s.SelectionStatusId = ss.SelectionStatusId
   WHERE 1=1
 		--AND s.SelectionId = 103292980
 		--AND m.MarketId = 48916809
-		AND f.FixtureId = 1036439028
+		AND f.FixtureId = 1039579378
 		AND (@selectionTypeFlag = 0 OR (@selectionTypeFlag = 1 AND st.[Name] LIKE @selectionType))
