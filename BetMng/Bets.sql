@@ -27,8 +27,8 @@ SELECT TOP (1000)
   FROM [q-sqldb-betmng].[dbo].[Bet] b
 			INNER JOIN [q-sqldb-betmng].[dbo].[Ticket] t ON t.TicketId = b.TicketId
 	WHERE 1=1
-			AND b.TicketId = 475032
+		  --AND b.TicketId = 475032
 		  --AND b.BetId = 146452
-		  AND b.PartnerBetId LIKE '2152738815%'
+		  AND b.PartnerBetId LIKE '2153017241%'
 		  --AND t.Channel = 6
 		  AND b.CreatedAtUtc >= DATEADD(DAY, -7, GETDATE())

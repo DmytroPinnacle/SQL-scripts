@@ -40,6 +40,6 @@ SELECT TOP (1000)
         INNER JOIN [asidb].[dbo].[tbGame] g ON wgi.GameNum = g.GameNum
 	WHERE 1=1
 			--AND w.[WagerNumber] = 23423423423
-			AND t.[TicketNumber] = 2152833341
-            AND g.GameNum = 1039583555
+			--AND t.[TicketNumber] = 2152833341
+            AND g.GameNum = 1039826047 
 		

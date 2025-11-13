@@ -27,8 +27,8 @@ SELECT TOP (1000)
 	  ,t.*
       ,'---------------------[Wager]------------------------' as "----------------------[Wager]---------------------"
       ,w.*
-      --,'----------------------[Line]-----------------------' as "---------------------[Line]--------------------"
-      --,gl.*
+      ,'----------------------[Line]-----------------------' as "---------------------[Line]--------------------"
+      ,gl.*
   FROM [asidb].[dbo].[tbWagerItemLineType] wilt
         INNER JOIN [asidb].[dbo].[tbTicket] t ON t.[TicketNumber] = wilt.[TicketNumber]
         INNER JOIN [asidb].[dbo].[tbWager] w ON wilt.[TicketNumber] = w.TicketNumber AND wilt.WagerNumber = w.WagerNumber
@@ -37,4 +37,4 @@ SELECT TOP (1000)
     WHERE 1=1
             --AND t.[TicketNumber] = 2152833341
             --AND gl.LineIndex = 2319112594
-            AND g.GameNum = 1039583555
+            AND g.GameNum = 1039709002
